@@ -138,7 +138,7 @@ function Index() {
               const first = products.find((p) => p.category === c)!;
               return (
                 <Reveal key={c} delay={i * 100} variant="zoom">
-                  <Link to="/products" hash={c.toLowerCase().replace(/[^a-z]+/g,"-")}
+                  <Link to="/products" search={{ cat: c }}
                     className="group block relative aspect-[4/5] rounded-3xl overflow-hidden ring-1 ring-[#e7b649]/40 shadow-xl">
                     <img src={first.image} alt={c} loading="lazy" className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#3b0c08]/95 via-[#3b0c08]/40 to-transparent" />
