@@ -1,17 +1,44 @@
-import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2, X, User, Phone, MapPin } from "lucide-react";
+import { useMemo, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { WHATSAPP } from "@/lib/products";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 
 export function CartDrawer() {
-  const { items, open, setOpen, remove, setQty, total, count, clear } = useCart();
+  const { items, open, setOpen, remove, setQty, total, clear } = useCart();
+  const itemCount = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
 
-  const orderText = encodeURIComponent(
-    `Hello RedByte Pickles, I'd like to order:\n\n${items
-      .map((i) => `• ${i.product.name} (${i.product.unit}) × ${i.quantity} = ₹${i.product.price * i.quantity}`)
-      .join("\n")}\n\nTotal: ₹${total}`
-  );
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [errors, setErrors] = useState<Partial<Record<'name'|'phone'|'address', string>>>({});
+  
+
+  const buildOrderText = () => {
+    const lines = items.map((i) => `• ${i.product.name} (${i.product.unit}) × ${i.quantity} = ₹${i.product.price * i.quantity}`);
+    const header = `🌶️ *New Order — RedByte Pickles* 🌶️\n\n`;
+    const customer = `*Customer Details*\n👤 Name: ${name || "(not provided)"}\n📞 Phone: ${phone || "(not provided)"}\n📍 Address: ${address || "(not provided)"}\n\n`;
+    const order = `*Order*\n${lines.join("\n")}\n\n*Total: ₹${total}*`;
+    return encodeURIComponent(header + customer + order + "\n\nPlease confirm availability and delivery.");
+  };
+
+  const validate = () => {
+    const next: Partial<Record<'name'|'phone'|'address', string>> = {};
+    if (!name || name.trim().length < 2) next.name = "Enter your full name";
+    if (!phone || !/^\+?[0-9()\-\s]{10,16}$/.test(phone)) next.phone = "Enter a valid phone number";
+    if (!address || address.trim().length < 8) next.address = "Enter a delivery address";
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const checkout = () => {
+    if (items.length === 0) return toast.error("Your cart is empty.");
+    if (!validate()) return toast.error("Please complete delivery details.");
+    const text = buildOrderText();
+    window.open(`https://wa.me/${WHATSAPP}?text=${text}`, "_blank");
+  };
 
   return (
     <>
@@ -31,8 +58,11 @@ export function CartDrawer() {
         <div className="px-5 py-4 flex items-center justify-between bg-gradient-to-r from-[#8a1a14] to-[#5b0f0a] text-[#fff2cc]">
           <div className="flex items-center gap-2">
             <ShoppingBag className="h-5 w-5" />
-            <h3 className="font-bebas text-2xl tracking-wider">Your Cart</h3>
-            <span className="text-xs bg-[#e7b649] text-[#3b2415] px-2 py-0.5 rounded-full font-bold">{count}</span>
+            <div>
+              <h3 className="font-bebas text-2xl tracking-wider">Your Cart</h3>
+              <p className="text-xs text-[#fff2cc]/80">{itemCount} item{itemCount !== 1 ? "s" : ""}</p>
+            </div>
+            <span className="text-xs bg-[#e7b649] text-[#3b2415] px-2 py-0.5 rounded-full font-bold">{itemCount}</span>
           </div>
           <button onClick={() => setOpen(false)} aria-label="Close" className="h-9 w-9 grid place-items-center rounded-full hover:bg-white/10">
             <X className="h-5 w-5" />
@@ -82,17 +112,62 @@ export function CartDrawer() {
 
         {items.length > 0 && (
           <div className="border-t border-[#e7b649]/30 px-5 py-4 bg-[#fff2cc]/60 space-y-3">
+            <div className="rounded-2xl bg-white p-4 border border-[#e7b649]/30 shadow-sm space-y-3">
+              <div className="text-sm text-[#3b2415]/80">Delivery details</div>
+              <label className="text-sm">
+                <div className="flex items-center gap-2 mb-1">
+                  <User className="h-4 w-4 text-[#8a1a14]" />
+                  <span className="text-xs text-[#3b2415]/80">Full name</span>
+                </div>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your full name"
+                  className="w-full px-3 py-2 rounded-xl border border-[#e7b649]/30 bg-[#fff8ee] focus:outline-none"
+                />
+                {errors.name && <div className="text-[12px] text-destructive mt-1">{errors.name}</div>}
+              </label>
+
+              <label className="text-sm">
+                <div className="flex items-center gap-2 mb-1">
+                  <Phone className="h-4 w-4 text-[#8a1a14]" />
+                  <span className="text-xs text-[#3b2415]/80">Phone number</span>
+                </div>
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value.replace(/[^0-9+()\-\s]/g, ""))}
+                  placeholder="Phone number"
+                  className="w-full px-3 py-2 rounded-xl border border-[#e7b649]/30 bg-[#fff8ee] focus:outline-none"
+                />
+                {errors.phone && <div className="text-[12px] text-destructive mt-1">{errors.phone}</div>}
+              </label>
+
+              <label className="text-sm">
+                <div className="flex items-center gap-2 mb-1">
+                  <MapPin className="h-4 w-4 text-[#8a1a14]" />
+                  <span className="text-xs text-[#3b2415]/80">Delivery address</span>
+                </div>
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  rows={3}
+                  placeholder="House / street / area / landmark"
+                  className="w-full px-3 py-2 rounded-xl border border-[#e7b649]/30 bg-[#fff8ee] focus:outline-none resize-none"
+                />
+                {errors.address && <div className="text-[12px] text-destructive mt-1">{errors.address}</div>}
+              </label>
+            </div>
+
             <div className="flex items-center justify-between">
               <span className="text-sm text-[#3b2415]/70">Subtotal</span>
               <span className="font-bebas text-3xl text-[#8a1a14]">₹{total}</span>
             </div>
-            <a
-              href={`https://wa.me/${WHATSAPP}?text=${orderText}`}
-              target="_blank" rel="noreferrer"
+            <button
+              onClick={checkout}
               className="block w-full text-center rounded-full bg-gradient-to-r from-[#8a1a14] to-[#5b0f0a] text-[#fff2cc] py-3 font-bold tracking-wide hover:shadow-[0_8px_24px_-6px_rgba(138,26,20,0.6)] hover:-translate-y-0.5 transition"
             >
               Checkout via WhatsApp
-            </a>
+            </button>
             <button onClick={clear} className="w-full text-xs text-[#3b2415]/60 hover:text-[#8a1a14]">Clear cart</button>
           </div>
         )}

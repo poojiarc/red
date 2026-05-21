@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Mail, MapPin, Phone, Clock, Heart } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Clock, Heart, Home, ShoppingBag, Image, Info, MessageSquare } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { ADDRESS, EMAIL, PHONE, PHONE_ALT } from "@/lib/products";
 
@@ -46,10 +46,17 @@ export function Footer() {
           <div>
             <h4 className="font-bebas text-xl tracking-widest text-[#e7b649] mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              {[["/","Home"],["/products","Products"],["/gallery","Gallery"],["/about","About"],["/contact","Contact"]].map(([to,label]) => (
+              {[
+                { to: "/", label: "Home", Icon: Home },
+                { to: "/products", label: "Products", Icon: ShoppingBag },
+                { to: "/gallery", label: "Gallery", Icon: Image },
+                { to: "/about", label: "About", Icon: Info },
+                { to: "/contact", label: "Contact", Icon: MessageSquare },
+              ].map(({ to, label, Icon }) => (
                 <li key={to}>
-                  <Link to={to} className="text-[#fff2cc]/80 hover:text-[#e7b649] hover:pl-2 transition-all inline-flex">
-                    → {label}
+                  <Link to={to} className="inline-flex items-center gap-2 text-[#fff2cc]/80 hover:text-[#e7b649] hover:pl-2 transition-all">
+                    <Icon className="h-4 w-4 text-[#e7b649]" />
+                    <span>{label}</span>
                   </Link>
                 </li>
               ))}
@@ -84,22 +91,24 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[#fff2cc]/15 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-[#fff2cc]/70">
-          <div>© {new Date().getFullYear()} RedByte Pickles. All rights reserved.</div>
-          <div className="flex items-center justify-center gap-1">
-            Made with <Heart className="inline h-4 w-4 mx-1 fill-red-500 text-red-500" /> by
+        <div className="mt-12 pt-6 border-t border-[#fff2cc]/15 flex flex-col items-center justify-center gap-3 text-sm text-[#fff2cc]/70">
+          <div className="text-center">© {new Date().getFullYear()} RedByte Pickles. All rights reserved.</div>
+          <div className="flex items-center justify-center gap-1 text-center">
+            <span>Made with</span>
+            <Heart className="inline h-4 w-4 mx-1 fill-red-500 text-red-500" />
+            <span>by</span>
             <a
               href="https://staffarc.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-orange-400 hover:underline"
+              className="inline-flex items-center gap-1 text-orange-400 hover:underline"
             >
               <img
                 src="https://www.staffarc.in/images/Staffarc-logo.png"
                 alt="StaffArc logo"
                 className="h-5 w-5 object-contain"
               />
-              StaffArc
+              <span>StaffArc</span>
             </a>
           </div>
         </div>

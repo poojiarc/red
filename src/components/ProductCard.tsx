@@ -1,11 +1,18 @@
 import * as React from "react";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import { Minus, Plus, ShoppingCart, CheckCircle2 } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 
 export function ProductCard({ product }: { product: Product }) {
   const { add } = useCart();
   const [qty, setQty] = React.useState(1);
+  const [added, setAdded] = React.useState(false);
+
+  const handleAdd = () => {
+    add(product, qty);
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 1400);
+  };
 
   return (
     <article className="group relative rounded-3xl bg-white border border-[#e7b649]/30 shadow-[0_8px_30px_-12px_rgba(120,30,20,0.2)] overflow-hidden hover:shadow-[0_20px_50px_-12px_rgba(138,26,20,0.45)] hover:-translate-y-1 transition-all duration-500">
@@ -37,10 +44,18 @@ export function ProductCard({ product }: { product: Product }) {
             <button onClick={() => setQty((q) => q + 1)} className="h-9 w-9 grid place-items-center text-[#8a1a14]"><Plus className="h-3.5 w-3.5" /></button>
           </div>
           <button
-            onClick={() => add(product, qty)}
+            onClick={handleAdd}
             className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#8a1a14] to-[#5b0f0a] text-[#fff2cc] px-4 h-9 text-sm font-semibold hover:shadow-[0_8px_24px_-6px_rgba(138,26,20,0.6)] transition"
           >
-            <ShoppingCart className="h-4 w-4" /> Add
+            {added ? (
+              <>
+                <CheckCircle2 className="h-4 w-4" /> Added
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="h-4 w-4" /> Add
+              </>
+            )}
           </button>
         </div>
       </div>
