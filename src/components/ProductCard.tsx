@@ -1,17 +1,29 @@
 import * as React from "react";
-import { Minus, Plus, ShoppingCart, CheckCircle2 } from "lucide-react";
+import { Minus, Plus, ShoppingCart, CheckCircle2, Trash2 } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 
 export function ProductCard({ product }: { product: Product }) {
-  const { add } = useCart();
+  const { add, remove } = useCart();
   const [qty, setQty] = React.useState(1);
   const [added, setAdded] = React.useState(false);
+  const [selectedVariant, setSelectedVariant] = React.useState(product.variants?.[product.variants.length - 1]?.weight || product.unit);
+
+  const currentPrice = product.variants
+    ? product.variants.find((v) => v.weight === selectedVariant)?.price || product.price
+    : product.price;
+
+  const currentWeight = selectedVariant;
 
   const handleAdd = () => {
     add(product, qty);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1400);
+  };
+
+  const handleRemove = () => {
+    remove(product.id);
+    setAdded(false);
   };
 
   return (
@@ -32,10 +44,31 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="p-5">
         <h3 className="font-bebas text-2xl tracking-wide text-[#3b2415]">{product.name}</h3>
-        <p className="text-xs text-[#3b2415]/60 mb-2">Per {product.unit} · Homemade</p>
+        <p className="text-xs text-[#3b2415]/60 mb-3">Homemade</p>
+        
+        {product.variants && product.variants.length > 0 && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              {product.variants.map((v) => (
+                <button
+                  key={v.weight}
+                  onClick={() => setSelectedVariant(v.weight)}
+                  className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${
+                    selectedVariant === v.weight
+                      ? "bg-red-600 text-white"
+                      : "bg-white border-2 border-[#e7b649]/40 text-[#3b2415] hover:border-[#8a1a14]"
+                  }`}
+                >
+                  {v.weight}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex items-baseline gap-1 mb-4">
-          <span className="font-bebas text-3xl text-[#8a1a14]">₹{product.price}</span>
-          <span className="text-xs text-[#3b2415]/60">/ {product.unit}</span>
+          <span className="font-bebas text-3xl text-red-600">₹{currentPrice}</span>
+          <span className="text-xs text-[#3b2415]/60">/ {currentWeight}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="inline-flex items-center rounded-full border border-[#e7b649]/60 bg-[#fff2cc]">
@@ -45,11 +78,11 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
           <button
             onClick={handleAdd}
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#8a1a14] to-[#5b0f0a] text-[#fff2cc] px-4 h-9 text-sm font-semibold hover:shadow-[0_8px_24px_-6px_rgba(138,26,20,0.6)] transition"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-green-100 text-green-700 px-4 h-9 text-sm font-semibold hover:bg-green-200 transition"
           >
             {added ? (
               <>
-                <CheckCircle2 className="h-4 w-4" /> Added
+                <CheckCircle2 className="h-4 w-4" /> In Cart
               </>
             ) : (
               <>
@@ -57,6 +90,14 @@ export function ProductCard({ product }: { product: Product }) {
               </>
             )}
           </button>
+          {added && (
+            <button
+              onClick={handleRemove}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-100 text-orange-700 px-4 h-9 text-sm font-semibold hover:bg-orange-200 transition"
+            >
+              <Trash2 className="h-4 w-4" /> Remove
+            </button>
+          )}
         </div>
       </div>
     </article>

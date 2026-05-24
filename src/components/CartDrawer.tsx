@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { WHATSAPP } from "@/lib/products";
 import { cn } from "@/lib/utils";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 export function CartDrawer() {

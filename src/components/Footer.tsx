@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, MapPin, Phone, Clock, Heart, Home, ShoppingBag, Image, Info, MessageSquare } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { ADDRESS, EMAIL, PHONE, PHONE_ALT } from "@/lib/products";

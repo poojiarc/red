@@ -1,20 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Send } from "lucide-react";
 import { ADDRESS, EMAIL, PHONE, PHONE_ALT, WHATSAPP } from "@/lib/products";
 import * as React from "react";
 
-export const Route = createFileRoute("/contact")({
-  component: ContactPage,
-  head: () => ({
-    meta: [
-      { title: "Contact — RedByte Pickles" },
-      { name: "description", content: "Reach out to RedByte Pickles for orders, queries or bulk requests. Located in Nellore, Andhra Pradesh." },
-    ],
-  }),
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const [form, setForm] = React.useState({ name: "", email: "", message: "" });
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

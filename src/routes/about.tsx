@@ -1,21 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { Heart, Leaf, Award, Users } from "lucide-react";
 import g1 from "@/assets/g1.jpg";
 import g3 from "@/assets/g3.jpg";
 import g8 from "@/assets/g8.jpg";
 
-export const Route = createFileRoute("/about")({
-  component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About — RedByte Pickles" },
-      { name: "description", content: "RedByte Pickles is a premium Andhra brand offering authentic homemade pickles, powders and traditional sweets, made with time-honored recipes." },
-    ],
-  }),
-});
-
-function AboutPage() {
+export default function AboutPage() {
   return (
     <>
       <section className="relative py-20 lg:py-28 bg-gradient-to-br from-[#3b0c08] via-[#5b0f0a] to-[#3b0c08] text-[#fff2cc]">

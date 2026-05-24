@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { Reveal } from "@/components/Reveal";
 import { X } from "lucide-react";
@@ -12,17 +11,7 @@ import g7 from "@/assets/g7.jpg";
 import g8 from "@/assets/g8.jpg";
 import { products } from "@/lib/products";
 
-export const Route = createFileRoute("/gallery")({
-  component: GalleryPage,
-  head: () => ({
-    meta: [
-      { title: "Gallery — RedByte Pickles" },
-      { name: "description", content: "A visual journey through our homemade Andhra pickles, powders and traditional preparations." },
-    ],
-  }),
-});
-
-function GalleryPage() {
+export default function GalleryPage() {
   const productImages = products.slice(0, 12).map((p) => p.image);
   const all = [g1, g3, g5, g8, g2, g4, g6, g7, ...productImages];
 

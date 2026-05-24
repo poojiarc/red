@@ -3,7 +3,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CartDrawer } from "./CartDrawer";
 import { WhatsAppButton } from "./WhatsAppButton";
-import { ScrollToTopButton, ScrollToTopOnNav } from "./ScrollToTop";
+import { ScrollToTopOnNav } from "./ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <Footer />
       <CartDrawer />
       <WhatsAppButton />
-      <ScrollToTopButton />
       <Toaster richColors position="top-center" />
     </div>
   );

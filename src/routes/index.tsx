@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
-import { Heart, Leaf, ChefHat, Package, Truck, Star, ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Heart, Leaf, ChefHat, Package, Truck, Star, ArrowRight, Sparkles, Globe } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import logo from "@/assets/logo.png";
 import { Reveal } from "@/components/Reveal";
@@ -8,17 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { products, categories } from "@/lib/products";
 import * as React from "react";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-  head: () => ({
-    meta: [
-      { title: "RedByte Pickles — Authentic Andhra Homemade Pickles, Powders & Sweets" },
-      { name: "description", content: "Premium Andhra homemade pickles, podis and traditional sweets. Freshly made, no preservatives, delivered to your door from Nellore." },
-    ],
-  }),
-});
-
-function Index() {
+export default function Index() {
   const [scrollY, setScrollY] = React.useState(0);
   React.useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -100,13 +89,14 @@ function Index() {
             <div className="mt-3 h-1 w-20 mx-auto rounded-full bg-gradient-to-r from-[#c9a14a] to-[#8a1a14]" />
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-5">
             {[
               { Icon: Heart, title: "Homemade with Love", desc: "Hand-crafted in small batches by traditional cooks." },
               { Icon: Leaf, title: "No Preservatives", desc: "100% natural — only spices, oil and salt." },
               { Icon: ChefHat, title: "Traditional Recipes", desc: "Time-honored Andhra recipes from grandma's kitchen." },
               { Icon: Package, title: "Freshly Packed", desc: "Sealed fresh, packed with care, shipped quickly." },
               { Icon: Truck, title: "Free Delivery 5km", desc: "Complimentary delivery within 5km of Nellore." },
+              { Icon: Globe, title: "International Couriers Available", desc: "@ Raj Nandan Kumar — worldwide delivery." },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 80} className="group">
                 <div className="h-full rounded-3xl bg-white p-6 border border-[#e7b649]/30 shadow-[0_8px_30px_-12px_rgba(120,30,20,0.18)] hover:shadow-[0_20px_50px_-15px_rgba(138,26,20,0.4)] hover:-translate-y-1 transition-all duration-500">

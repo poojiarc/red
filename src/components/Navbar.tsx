@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useCart } from "@/lib/cart";
@@ -17,7 +17,7 @@ export function Navbar() {
   const { count, setOpen } = useCart();
   const [scrolled, setScrolled] = React.useState(false);
   const [mobile, setMobile] = React.useState(false);
-  const { location } = useRouterState();
+  const location = useLocation();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);

@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { categories, products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -6,17 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/products")({
-  component: ProductsPage,
-  head: () => ({
-    meta: [
-      { title: "Shop Pickles, Powders & Sweets — RedByte Pickles" },
-      { name: "description", content: "Browse our full range of authentic Andhra homemade pickles, podis, non-veg pickles and traditional sweets." },
-    ],
-  }),
-});
-
-function ProductsPage() {
+export default function ProductsPage() {
   const [active, setActive] = React.useState<string>("All");
   const [query, setQuery] = React.useState("");
 
