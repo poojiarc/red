@@ -35,7 +35,7 @@ export type Category =
   | "Veg Pickles"
   | "Non-Veg Pickles"
   | "Homemade Powders"
-  | "Oils"
+  | "Ghee"
   | "Traditional Snacks & Sweets";
 
 export type WeightVariant = {
@@ -325,7 +325,7 @@ export const products: Product[] = [
     name: "Cow Ghee", 
     price: 800, 
     image: cowghee, 
-    category: "Oils", 
+    category: "Ghee", 
     unit: "1 Kg",
     variants: [
       { weight: "500gm", price: 400 },
@@ -337,7 +337,7 @@ export const products: Product[] = [
     name: "Buffalo Ghee", 
     price: 900, 
     image: buffaloghee, 
-    category: "Oils", 
+    category: "Ghee", 
     unit: "1 Kg",
     variants: [
       { weight: "500gm", price: 450 },
@@ -350,13 +350,13 @@ export const categories: Category[] = [
   "Veg Pickles",
   "Non-Veg Pickles",
   "Homemade Powders",
-  "Oils",
+  "Ghee",
   "Traditional Snacks & Sweets",
 ];
 
 export const PHONE = "72076 18866";
 export const PHONE_ALT = "92949 29949";
 export const WHATSAPP = "917207618866";
-export const EMAIL = "redbitepickles@gmail.com";
+export const EMAIL = "redbytepickles@gmail.com";
 export const ADDRESS =
   "D.No: 25/2/518 New Military Colony, 5th Cross Rd, Near Bhargavi Nursing College, Pubi Setty Enclave Ground Floor, Vedayapalem, Nellore, Andhra Pradesh – 524004";

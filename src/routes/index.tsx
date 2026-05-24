@@ -80,6 +80,40 @@ export default function Index() {
         <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#fff8ee] to-transparent" />
       </section>
 
+      {/* CATEGORIES */}
+      <section className="py-20 lg:py-28 bg-gradient-to-b from-[#fff8ee] to-[#fff2cc]/50 relative overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#e7b649]/20 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#8a1a14]/15 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#8a1a14] font-bold">Our Collections</p>
+            <h2 className="font-bebas text-5xl lg:text-6xl text-[#3b2415] mt-2">Explore Categories</h2>
+            <div className="mt-3 h-1 w-20 mx-auto rounded-full bg-gradient-to-r from-[#c9a14a] to-[#8a1a14]" />
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((c, i) => {
+              const first = products.find((p) => p.category === c)!;
+              return (
+                <Reveal key={c} delay={i * 100} variant="zoom">
+                  <Link to="/products"
+                    className="group block relative aspect-[4/5] rounded-3xl overflow-hidden ring-1 ring-[#e7b649]/40 shadow-xl">
+                    <img src={first.image} alt={c} loading="lazy" className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#3b0c08]/95 via-[#3b0c08]/40 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-6 text-[#fff2cc]">
+                      <h3 className="font-bebas text-3xl tracking-wide">{c}</h3>
+                      <div className="mt-2 inline-flex items-center gap-2 text-sm text-[#e7b649] font-semibold opacity-90 group-hover:gap-3 transition-all">
+                        Browse <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* HOMEMADE WITH LOVE HIGHLIGHT */}
       <section className="py-16 lg:py-20 bg-[#fff8ee]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -128,40 +162,6 @@ export default function Index() {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CATEGORIES */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-[#fff8ee] to-[#fff2cc]/50 relative overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#e7b649]/20 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#8a1a14]/15 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#8a1a14] font-bold">Our Collections</p>
-            <h2 className="font-bebas text-5xl lg:text-6xl text-[#3b2415] mt-2">Explore Categories</h2>
-            <div className="mt-3 h-1 w-20 mx-auto rounded-full bg-gradient-to-r from-[#c9a14a] to-[#8a1a14]" />
-          </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((c, i) => {
-              const first = products.find((p) => p.category === c)!;
-              return (
-                <Reveal key={c} delay={i * 100} variant="zoom">
-                  <Link to="/products"
-                    className="group block relative aspect-[4/5] rounded-3xl overflow-hidden ring-1 ring-[#e7b649]/40 shadow-xl">
-                    <img src={first.image} alt={c} loading="lazy" className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#3b0c08]/95 via-[#3b0c08]/40 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-[#fff2cc]">
-                      <h3 className="font-bebas text-3xl tracking-wide">{c}</h3>
-                      <div className="mt-2 inline-flex items-center gap-2 text-sm text-[#e7b649] font-semibold opacity-90 group-hover:gap-3 transition-all">
-                        Browse <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
           </div>
         </div>
       </section>
