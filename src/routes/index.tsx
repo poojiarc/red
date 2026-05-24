@@ -80,6 +80,27 @@ export default function Index() {
         <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#fff8ee] to-transparent" />
       </section>
 
+      {/* HOMEMADE WITH LOVE HIGHLIGHT */}
+      <section className="py-16 lg:py-20 bg-[#fff8ee]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="rounded-3xl bg-gradient-to-br from-[#8a1a14] to-[#5b0f0a] p-8 lg:p-12 text-[#fff2cc] shadow-[0_20px_50px_-12px_rgba(138,26,20,0.4)]">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-shrink-0">
+                  <div className="h-24 w-24 rounded-3xl bg-[#fff2cc]/20 grid place-items-center">
+                    <Heart className="h-12 w-12 text-[#e7b649]" />
+                  </div>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-bebas text-4xl lg:text-5xl tracking-wide mb-3">Homemade with Love</h3>
+                  <p className="text-lg text-[#fff2cc]/85 leading-relaxed">Hand-crafted in small batches by traditional cooks using time-honored recipes and premium ingredients.</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* CATEGORIES */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-[#fff8ee] to-[#fff2cc]/50 relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#e7b649]/20 blur-3xl" />
@@ -111,27 +132,6 @@ export default function Index() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* HOMEMADE WITH LOVE HIGHLIGHT */}
-      <section className="py-16 lg:py-20 bg-[#fff8ee]">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="rounded-3xl bg-gradient-to-br from-[#8a1a14] to-[#5b0f0a] p-8 lg:p-12 text-[#fff2cc] shadow-[0_20px_50px_-12px_rgba(138,26,20,0.4)]">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-shrink-0">
-                  <div className="h-24 w-24 rounded-3xl bg-[#fff2cc]/20 grid place-items-center">
-                    <Heart className="h-12 w-12 text-[#e7b649]" />
-                  </div>
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="font-bebas text-4xl lg:text-5xl tracking-wide mb-3">Homemade with Love</h3>
-                  <p className="text-lg text-[#fff2cc]/85 leading-relaxed">Hand-crafted in small batches by traditional cooks using time-honored recipes and premium ingredients.</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

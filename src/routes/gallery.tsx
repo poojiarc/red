@@ -9,11 +9,23 @@ import g5 from "@/assets/g5.jpg";
 import g6 from "@/assets/g6.jpg";
 import g7 from "@/assets/g7.jpg";
 import g8 from "@/assets/g8.jpg";
+import g9 from "@/assets/g9.jpg";
+import g10 from "@/assets/g10.jpg";
+import g11 from "@/assets/g11.jpg";
+import g12 from "@/assets/g12.jpg";
+import g13 from "@/assets/g13.jpg";
+import g14 from "@/assets/g14.jpg";
+import g15 from "@/assets/g15.jpg";
+import g16 from "@/assets/g16.jpg";
+import g17 from "@/assets/g17.jpg";
+import g18 from "@/assets/g18.jpg";
+import g19 from "@/assets/g19.jpg";
+import g20 from "@/assets/g20.jpg";
 import { products } from "@/lib/products";
 
 export default function GalleryPage() {
   const productImages = products.slice(0, 12).map((p) => p.image);
-  const all = [g1, g3, g5, g8, g2, g4, g6, g7, ...productImages];
+  const all = [g1, g3, g5, g8, g2, g4, g6, g7, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20, ...productImages];
 
   const [active, setActive] = React.useState<string | null>(null);
 
