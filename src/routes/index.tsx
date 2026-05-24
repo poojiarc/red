@@ -80,6 +80,27 @@ export default function Index() {
         <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#fff8ee] to-transparent" />
       </section>
 
+      {/* HOMEMADE WITH LOVE HIGHLIGHT */}
+      <section className="py-16 lg:py-20 bg-[#fff8ee]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="rounded-3xl bg-gradient-to-br from-[#8a1a14] to-[#5b0f0a] p-8 lg:p-12 text-[#fff2cc] shadow-[0_20px_50px_-12px_rgba(138,26,20,0.4)]">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-shrink-0">
+                  <div className="h-24 w-24 rounded-3xl bg-[#fff2cc]/20 grid place-items-center">
+                    <Heart className="h-12 w-12 text-[#e7b649]" />
+                  </div>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-bebas text-4xl lg:text-5xl tracking-wide mb-3">Homemade with Love</h3>
+                  <p className="text-lg text-[#fff2cc]/85 leading-relaxed">Hand-crafted in small batches by traditional cooks using time-honored recipes and premium ingredients.</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section className="py-20 lg:py-28 bg-[#fff8ee]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -89,14 +110,13 @@ export default function Index() {
             <div className="mt-3 h-1 w-20 mx-auto rounded-full bg-gradient-to-r from-[#c9a14a] to-[#8a1a14]" />
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {[
-              { Icon: Heart, title: "Homemade with Love", desc: "Hand-crafted in small batches by traditional cooks." },
               { Icon: Leaf, title: "No Preservatives", desc: "100% natural — only spices, oil and salt." },
               { Icon: ChefHat, title: "Traditional Recipes", desc: "Time-honored Andhra recipes from grandma's kitchen." },
               { Icon: Package, title: "Freshly Packed", desc: "Sealed fresh, packed with care, shipped quickly." },
               { Icon: Truck, title: "Free Delivery 5km", desc: "Complimentary delivery within 5km of Nellore." },
-              { Icon: Globe, title: "International Couriers Available", desc: "@ Raj Nandan Kumar — worldwide delivery." },
+              { Icon: Globe, title: "International Couriers Available", desc: "Worldwide delivery — reach your door anywhere." },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 80} className="group">
                 <div className="h-full rounded-3xl bg-white p-6 border border-[#e7b649]/30 shadow-[0_8px_30px_-12px_rgba(120,30,20,0.18)] hover:shadow-[0_20px_50px_-15px_rgba(138,26,20,0.4)] hover:-translate-y-1 transition-all duration-500">
