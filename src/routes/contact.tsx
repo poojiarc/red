@@ -50,6 +50,21 @@ export default function ContactPage() {
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
+
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#e7b649]/30 mt-6">
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-[#e7b649]/30 mt-6">
+  <iframe
+    src="https://www.google.com/maps?q=Redbites+pickles&ll=14.4132798,79.9530344&z=17&output=embed"
+    width="100%"
+    height="300"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Redbites Pickles Location"
+  />
+</div>
+            </div>
           </Reveal>
 
           <Reveal variant="right">
