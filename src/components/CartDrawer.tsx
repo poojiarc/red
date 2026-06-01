@@ -74,7 +74,7 @@ export function CartDrawer() {
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 py-4">
+        <div className="flex-1 overflow-y-auto px-5 py-4 min-h-0">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-[#3b2415]/70">
               <div className="h-20 w-20 rounded-full bg-[#fff2cc] grid place-items-center mb-4">
@@ -88,7 +88,7 @@ export function CartDrawer() {
               </Link>
             </div>
           ) : (
-            <ul className="space-y-3">
+            <ul className="space-y-3 pb-4">
               {items.map((i) => {
                 const variantPrice = i.product.variants?.find((v) => v.weight === i.selectedVariant)?.price;
                 const price = variantPrice !== undefined ? variantPrice : i.product.price;
