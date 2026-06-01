@@ -17,7 +17,12 @@ export function CartDrawer() {
   
 
   const buildOrderText = () => {
-    const lines = items.map((i) => `• ${i.product.name} (${i.product.unit}) × ${i.quantity} = ₹${i.product.price * i.quantity}`);
+    const lines = items.map((i) => {
+      const variantPrice = i.product.variants?.find((v) => v.weight === i.selectedVariant)?.price;
+      const price = variantPrice !== undefined ? variantPrice : i.product.price;
+      const variant = i.selectedVariant ? ` (${i.selectedVariant})` : "";
+      return `• ${i.product.name}${variant} × ${i.quantity} = ₹${price * i.quantity}`;
+    });
     const header = `🌶️ *New Order — RedByte Pickles* 🌶️\n\n`;
     const customer = `*Customer Details*\n👤 Name: ${name || "(not provided)"}\n📞 Phone: ${phone || "(not provided)"}\n📍 Address: ${address || "(not provided)"}\n\n`;
     const order = `*Order*\n${lines.join("\n")}\n\n*Total: ₹${total}*`;
@@ -84,28 +89,32 @@ export function CartDrawer() {
             </div>
           ) : (
             <ul className="space-y-3">
-              {items.map((i) => (
-                <li key={i.product.id} className="flex gap-3 p-3 rounded-2xl bg-white border border-[#e7b649]/30 shadow-sm">
-                  <img src={i.product.image} alt={i.product.name} loading="lazy" className="h-20 w-20 rounded-xl object-cover" />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between gap-2">
-                      <h4 className="font-semibold text-[#3b2415] truncate">{i.product.name}</h4>
-                      <button onClick={() => remove(i.product.id)} className="text-[#8a1a14] hover:scale-110 transition" aria-label="Remove">
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <p className="text-xs text-[#3b2415]/60">{i.product.unit}</p>
-                    <div className="mt-2 flex items-center justify-between">
-                      <div className="inline-flex items-center rounded-full border border-[#e7b649]/60 bg-[#fff2cc]">
-                        <button onClick={() => setQty(i.product.id, i.quantity - 1)} className="h-7 w-7 grid place-items-center text-[#8a1a14]"><Minus className="h-3 w-3" /></button>
-                        <span className="px-2 text-sm font-semibold w-7 text-center">{i.quantity}</span>
-                        <button onClick={() => setQty(i.product.id, i.quantity + 1)} className="h-7 w-7 grid place-items-center text-[#8a1a14]"><Plus className="h-3 w-3" /></button>
+              {items.map((i) => {
+                const variantPrice = i.product.variants?.find((v) => v.weight === i.selectedVariant)?.price;
+                const price = variantPrice !== undefined ? variantPrice : i.product.price;
+                return (
+                  <li key={`${i.product.id}-${i.selectedVariant}`} className="flex gap-3 p-3 rounded-2xl bg-white border border-[#e7b649]/30 shadow-sm">
+                    <img src={i.product.image} alt={i.product.name} loading="lazy" className="h-20 w-20 rounded-xl object-cover" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between gap-2">
+                        <h4 className="font-semibold text-[#3b2415] truncate">{i.product.name}</h4>
+                        <button onClick={() => remove(i.product.id, i.selectedVariant)} className="text-[#8a1a14] hover:scale-110 transition" aria-label="Remove">
+                          <Trash2 className="h-4 w-4" />
+                        </button>
                       </div>
-                      <span className="font-bebas text-xl text-[#8a1a14]">₹{i.product.price * i.quantity}</span>
+                      <p className="text-xs text-[#3b2415]/60">{i.selectedVariant || i.product.unit}</p>
+                      <div className="mt-2 flex items-center justify-between">
+                        <div className="inline-flex items-center rounded-full border border-[#e7b649]/60 bg-[#fff2cc]">
+                          <button onClick={() => setQty(i.product.id, i.quantity - 1, i.selectedVariant)} className="h-7 w-7 grid place-items-center text-[#8a1a14]"><Minus className="h-3 w-3" /></button>
+                          <span className="px-2 text-sm font-semibold w-7 text-center">{i.quantity}</span>
+                          <button onClick={() => setQty(i.product.id, i.quantity + 1, i.selectedVariant)} className="h-7 w-7 grid place-items-center text-[#8a1a14]"><Plus className="h-3 w-3" /></button>
+                        </div>
+                        <span className="font-bebas text-xl text-[#8a1a14]">₹{price * i.quantity}</span>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

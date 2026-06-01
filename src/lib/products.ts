@@ -308,17 +308,138 @@ export const products: Product[] = [
     ]
   },
 
-  { id: "ariselu", name: "Ariselu", price: 600, image: ariselu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "sunnundalu", name: "Bellam Sunnundalu", price: 1100, image: sunnundalu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "gavvalu", name: "Bellam Gavvalu", price: 500, image: gavvalu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "kajjikayalu", name: "Kajjikayalu", price: 800, image: kajjikayalu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "boondiladdu", name: "Boondi Laddu", price: 500, image: boondiladdu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "janthikalu", name: "Janthikalu", price: 600, image: janthikalu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "karapusa", name: "Karapusa", price: 600, image: karapusa, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "mixture", name: "Mixture", price: 600, image: mixture, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "boondi", name: "Boondi", price: 600, image: boondi, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "chekkalu", name: "Chekkalu", price: 600, image: chekkalu, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
-  { id: "ribbonpakodi", name: "Ribbon Pakodi", price: 600, image: ribbon, category: "Traditional Snacks & Sweets", unit: "1 Kg" },
+  { 
+    id: "ariselu", 
+    name: "Ariselu", 
+    price: 600, 
+    image: ariselu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "sunnundalu", 
+    name: "Bellam Sunnundalu", 
+    price: 1100, 
+    image: sunnundalu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 550 },
+      { weight: "1kg", price: 1100 }
+    ]
+  },
+  { 
+    id: "gavvalu", 
+    name: "Bellam Gavvalu", 
+    price: 500, 
+    image: gavvalu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 250 },
+      { weight: "1kg", price: 500 }
+    ]
+  },
+  { 
+    id: "kajjikayalu", 
+    name: "Kajjikayalu", 
+    price: 800, 
+    image: kajjikayalu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 400 },
+      { weight: "1kg", price: 800 }
+    ]
+  },
+  { 
+    id: "boondiladdu", 
+    name: "Boondi Laddu", 
+    price: 500, 
+    image: boondiladdu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 250 },
+      { weight: "1kg", price: 500 }
+    ]
+  },
+  { 
+    id: "janthikalu", 
+    name: "Janthikalu", 
+    price: 600, 
+    image: janthikalu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "karapusa", 
+    name: "Karapusa", 
+    price: 600, 
+    image: karapusa, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "mixture", 
+    name: "Mixture", 
+    price: 600, 
+    image: mixture, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "boondi", 
+    name: "Boondi", 
+    price: 600, 
+    image: boondi, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "chekkalu", 
+    name: "Chekkalu", 
+    price: 600, 
+    image: chekkalu, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
+  { 
+    id: "ribbonpakodi", 
+    name: "Ribbon Pakodi", 
+    price: 600, 
+    image: ribbon, 
+    category: "Traditional Snacks & Sweets", 
+    unit: "1 Kg",
+    variants: [
+      { weight: "500gm", price: 300 },
+      { weight: "1kg", price: 600 }
+    ]
+  },
 
   { 
     id: "cowghee", 

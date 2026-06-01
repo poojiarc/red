@@ -16,13 +16,13 @@ export function ProductCard({ product }: { product: Product }) {
   const currentWeight = selectedVariant;
 
   const handleAdd = () => {
-    add(product, qty);
+    add(product, qty, selectedVariant);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1400);
   };
 
   const handleRemove = () => {
-    remove(product.id);
+    remove(product.id, selectedVariant);
     setAdded(false);
   };
 
